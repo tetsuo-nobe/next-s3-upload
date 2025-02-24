@@ -2,8 +2,8 @@
 import { PutObjectCommand, S3Client } from "@aws-sdk/client-s3";
 
 const s3Client = new S3Client({
-  region: process.env.AWS_REGION,
-  endpoint: `https://s3.${process.env.NEXT_PUBLIC_AWS_REGION}.amazonaws.com`,
+  region: process.env.AWS_REGION
+  //endpoint: `https://s3.${process.env.NEXT_PUBLIC_AWS_REGION}.amazonaws.com`,
 });
 
 export async function uploadFile(base64, fileName) {
