@@ -10,6 +10,7 @@ export async function uploadFile(base64, fileName) {
     const command = new PutObjectCommand({
       Bucket: process.env.NEXT_PUBLIC_S3_BUCKET_NAME,
       Key: `${process.env.NEXT_PUBLIC_S3_PATH}/${fileName}`,
+      s3_endpoint: `s3-${process.env.NEXT_PUBLIC_AWS_REGION}.amazonaws.com`,
       Body: Buffer.from(base64.split(",")[1], "base64")
     });
     await s3Client.send(command).then(() => {
