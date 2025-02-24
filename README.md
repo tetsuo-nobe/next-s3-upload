@@ -3,8 +3,11 @@
 * 他の プロジェクトで使うための事前検証なので、このプロジェクトでも下記の前提としています。
     - Amplify Hosting でデプロイする
         - Amplify Hosting でデプロイ時に IAM ロールで S3 バケットへのアクセス権限を付与する
+            - このとき、サービスロールではなく **コンピューティングロール** にロールを設定する
     - Amplify Hosting 以外の Amplify の機能は使わない
     - TypeScript は使わない
+
+* 注意：Amplify Hosting でデプロイする場合、AWS SDK で S3 Client を作成する際は endpoint を指定する必要がある
 
 * 参考 URL (下記のブログのコードを参考にさせていただきました。)
   - https://zenn.dev/ncdc/articles/267dc71da14c66

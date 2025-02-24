@@ -2,7 +2,8 @@
 import { PutObjectCommand, S3Client } from "@aws-sdk/client-s3";
 
 const s3Client = new S3Client({
-  region: process.env.AWS_REGION
+  region: process.env.AWS_REGION,
+  endpoint: `https://s3.${process.env.NEXT_PUBLIC_AWS_REGION}.amazonaws.com`,
 });
 
 export async function uploadFile(base64, fileName) {
@@ -10,7 +11,6 @@ export async function uploadFile(base64, fileName) {
     const command = new PutObjectCommand({
       Bucket: process.env.NEXT_PUBLIC_S3_BUCKET_NAME,
       Key: `${process.env.NEXT_PUBLIC_S3_PATH}/${fileName}`,
-      s3_endpoint: `s3-${process.env.NEXT_PUBLIC_AWS_REGION}.amazonaws.com`,
       Body: Buffer.from(base64.split(",")[1], "base64")
     });
     await s3Client.send(command).then(() => {
